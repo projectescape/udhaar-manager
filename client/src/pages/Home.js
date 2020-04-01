@@ -1,30 +1,27 @@
-import {
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar
-} from "@ionic/react";
 import React from "react";
-import ExploreContainer from "../components/ExploreContainer";
-import "./Home.css";
+import Header from "../components/Header";
+import { IonContent, IonPage } from "@ionic/react";
 
 const Home = () => {
+  console.log("Hello");
+
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Blank</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer />
-      </IonContent>
+      <Header title="Home" />
+      <IonContent className="ion-padding">
+        The world is your oyster.
+        <p>
+          If you get lost, the{" "}
+          <a
+            target="_blank"
+            rel="noopener"
+            href="https://ionicframework.com/docs/"
+          >
+            docs
+          </a>{" "}
+          will be your guide.
+        </p>
+      </IonContent>{" "}
     </IonPage>
   );
 };
