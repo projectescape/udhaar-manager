@@ -1,4 +1,6 @@
 const passport = require("passport");
+const jwt = require("jsonwebtoken");
+const { jwtSecret } = require("../config/keys");
 
 module.exports = app => {
   app.get("/api/authTest", (req, res) => {
@@ -17,18 +19,15 @@ module.exports = app => {
     "/auth/google/callback",
     passport.authenticate("google", { session: false }),
     (req, res) => {
-      // res.send(req.user);
+      const token = jwt.sign(req.user, jwtSecret, { expiresIn: "30d" });
 
       res.send(`
         <html>
-
-        <script>
-        
-        window.opener.parent.postMessage("Hello","*");
-        console.log("Hello Log");
-        
-        </script>
-        
+          <script>
+            window.opener.parent.postMessage("${token}");
+            console.log("Hello Log");
+            window.close();
+          </script> 
         </html>
         `);
     }
